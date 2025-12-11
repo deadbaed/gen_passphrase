@@ -28,7 +28,7 @@ jobs:
           components: clippy, rustfmt
       - run: cargo clippy --all-targets --all-features
       - run: cargo fmt --check
-      
+
   examples:
     runs-on: ubuntu-latest
     steps:
