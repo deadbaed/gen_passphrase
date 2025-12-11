@@ -54,7 +54,26 @@ let passphrase = gen_passphrase::generate(&[EFF_SHORT_2], 1, None);
 
 pub mod dictionary;
 
-fn random_word(dictionary: &'static [&'static str]) -> &'static str {
+type Word = &'static str;
+type Dictionary = &'static [Word];
+
+/// Choose random word from dictionary
+///
+/// Pick and return a random item of the provided dictionary
+///
+/// # Arguments
+///
+/// * `dictionary` - Dictionary to use.
+///
+/// # Examples
+///
+/// ```
+/// let custom_dictionary = &["toto", "mange", "du", "gâteau"];
+///
+/// // Example of picked word: "mange"
+/// let word = gen_passphrase::choose_random_word(custom_dictionary);
+/// ```
+pub fn choose_random_word(dictionary: Dictionary) -> Word {
     use nanorand::{ChaCha20, Rng};
     use std::ops::Range;
 
@@ -100,7 +119,7 @@ fn random_word(dictionary: &'static [&'static str]) -> &'static str {
 /// let passphrase = gen_passphrase::generate(&[hello_dictionary, custom_dictionary], 2, Some("-"));
 /// ```
 pub fn generate(
-    dictionaries: &[&'static [&'static str]],
+    dictionaries: &[Dictionary],
     iterations: usize,
     delimiter: Option<&'static str>,
 ) -> String {
@@ -110,7 +129,7 @@ pub fn generate(
         // Repeat for every provided dictionary
         for (y, dictionary) in dictionaries.iter().enumerate() {
             // Choose random word
-            string.push_str(random_word(dictionary));
+            string.push_str(choose_random_word(dictionary));
 
             // Add delimiter if iteration is not over
             if let Some(delimiter) = delimiter
