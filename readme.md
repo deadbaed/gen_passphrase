@@ -19,9 +19,6 @@ List of built-in dictionaries:
 | Eff Short Wordlist 1 | `eff_short_1`          |
 | Eff Large Wordlist   | `eff_large`            |
 
-### Add new built-in dictionary
+### Prepare new built-in dictionary
 
-A small program to generate dictionaries is provided.
-
-1. Provide a list of words in a file, one word per line.
-2. Run `cargo run --example create_dictionary_from_file -- --help` to get started.
+A small program to generate dictionaries is provided in [create_dictionary_from_file](./create_dictionary_from_file).

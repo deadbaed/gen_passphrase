@@ -1,17 +1,19 @@
+[workspace]
+resolver = "3"
+members = [".", "create_dictionary_from_file"]
+
 [package]
+publish = true
 name = "gen_passphrase"
 version = "0.1.1"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 keywords = ["passphrase", "generator", "dictionary", "custom", "random"]
 description = "A secure, simple yet customizable passphrase generator. Use provided dictionaries or bring your own!"
-repository = "https://github.com/x4m3/gen_passphrase"
+repository = "https://github.com/deadbaed/gen_passphrase"
 
 [dependencies]
 nanorand = { version = "0.7", features = ["chacha"] }
-
-[dev-dependencies]
-clap = { version = "4.2", features = ["derive"] }
 
 [features]
 # include no dictionaries by default
