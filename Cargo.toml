@@ -13,7 +13,7 @@ description = "A secure, simple yet customizable passphrase generator. Use provi
 repository = "https://github.com/deadbaed/gen_passphrase"
 
 [dependencies]
-nanorand = { version = "0.7", features = ["chacha"] }
+nanorand = { version = "0.8", features = ["chacha"] }
 
 [features]
 # include no dictionaries by default
