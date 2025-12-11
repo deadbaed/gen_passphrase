@@ -113,18 +113,18 @@ pub fn generate(
             string.push_str(random_word(dictionary));
 
             // Add delimiter if iteration is not over
-            if let Some(delimiter) = delimiter {
-                if y != dictionaries.len() - 1 {
-                    string.push_str(delimiter);
-                }
+            if let Some(delimiter) = delimiter
+                && y != dictionaries.len() - 1
+            {
+                string.push_str(delimiter);
             }
         }
 
         // Add delimiter if iteration is not over
-        if let Some(delimiter) = delimiter {
-            if x != iterations - 1 {
-                string.push_str(delimiter);
-            }
+        if let Some(delimiter) = delimiter
+            && x != iterations - 1
+        {
+            string.push_str(delimiter);
         }
     }
 
