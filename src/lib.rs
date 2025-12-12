@@ -157,7 +157,7 @@ pub fn generate(
 #[cfg(test)]
 mod tests {
     use super::Dictionary;
-    use crate::{generate, choose_random_word};
+    use crate::{choose_random_word, generate};
 
     const EMPTY_DICTIONARY: Dictionary = &[];
     const CUSTOM_DICTIONARY: Dictionary = &["this", "is", "my", "custom", "dictionary"];
@@ -205,11 +205,26 @@ mod tests {
 
     #[test]
     fn small_dictionary() {
-        assert_eq!(generate(&[SMALL_DICTIONARY], 1, Some("miam")), Some("gâteau".into()));
-        assert_eq!(generate(&[SMALL_DICTIONARY], 2, None), Some("gâteaugâteau".into()));
-        assert_eq!(generate(&[SMALL_DICTIONARY], 2, Some(" MIAM ")), Some("gâteau MIAM gâteau".into()));
-        assert_eq!(generate(&[SMALL_DICTIONARY], 3, Some("_")), Some("gâteau_gâteau_gâteau".into()));
-        assert_eq!(generate(&[SMALL_DICTIONARY], 5, Some(" ")), Some("gâteau gâteau gâteau gâteau gâteau".into()));
+        assert_eq!(
+            generate(&[SMALL_DICTIONARY], 1, Some("miam")),
+            Some("gâteau".into())
+        );
+        assert_eq!(
+            generate(&[SMALL_DICTIONARY], 2, None),
+            Some("gâteaugâteau".into())
+        );
+        assert_eq!(
+            generate(&[SMALL_DICTIONARY], 2, Some(" MIAM ")),
+            Some("gâteau MIAM gâteau".into())
+        );
+        assert_eq!(
+            generate(&[SMALL_DICTIONARY], 3, Some("_")),
+            Some("gâteau_gâteau_gâteau".into())
+        );
+        assert_eq!(
+            generate(&[SMALL_DICTIONARY], 5, Some(" ")),
+            Some("gâteau gâteau gâteau gâteau gâteau".into())
+        );
     }
 
     #[test]
