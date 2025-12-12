@@ -4,6 +4,6 @@ fn main() {
 
     let custom_dictionary: &[&str] = &["this", "is", "my", "custom", "dictionary"];
 
-    let passphrase = generate(&[custom_dictionary, EFF_SHORT_1], 1, Some(" "));
+    let passphrase = generate(&[custom_dictionary, EFF_SHORT_1], 1, Some(" ")).unwrap();
     println!("{passphrase}");
 }
