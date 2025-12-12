@@ -157,7 +157,7 @@ pub fn generate(
 #[cfg(test)]
 mod tests {
     use super::Dictionary;
-    use crate::generate;
+    use crate::{generate, choose_random_word};
 
     const EMPTY_DICTIONARY: Dictionary = &[];
     const CUSTOM_DICTIONARY: Dictionary = &["this", "is", "my", "custom", "dictionary"];
@@ -201,5 +201,20 @@ mod tests {
     fn empty_dictionary() {
         assert!(generate(&[EMPTY_DICTIONARY], 1, None).is_none());
         assert!(generate(&[EMPTY_DICTIONARY], 5, Some(" ")).is_none());
+    }
+
+    #[test]
+    fn small_dictionary() {
+        assert_eq!(generate(&[SMALL_DICTIONARY], 1, Some("miam")), Some("gâteau".into()));
+        assert_eq!(generate(&[SMALL_DICTIONARY], 2, None), Some("gâteaugâteau".into()));
+        assert_eq!(generate(&[SMALL_DICTIONARY], 2, Some(" MIAM ")), Some("gâteau MIAM gâteau".into()));
+        assert_eq!(generate(&[SMALL_DICTIONARY], 3, Some("_")), Some("gâteau_gâteau_gâteau".into()));
+        assert_eq!(generate(&[SMALL_DICTIONARY], 5, Some(" ")), Some("gâteau gâteau gâteau gâteau gâteau".into()));
+    }
+
+    #[test]
+    fn random_word() {
+        assert!(choose_random_word(EMPTY_DICTIONARY).is_none());
+        assert_eq!(choose_random_word(SMALL_DICTIONARY), Some("gâteau"));
     }
 }
