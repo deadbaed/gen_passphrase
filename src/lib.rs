@@ -73,15 +73,19 @@ type Dictionary = &'static [Word];
 /// // Example of picked word: "mange"
 /// let word = gen_passphrase::choose_random_word(custom_dictionary);
 /// ```
-pub fn choose_random_word(dictionary: Dictionary) -> Word {
+pub fn choose_random_word(dictionary: Dictionary) -> Option<Word> {
     use nanorand::{ChaCha20, Rng};
     use std::ops::Range;
+
+    if dictionary.is_empty() {
+        return None;
+    }
 
     let range = Range {
         start: 0,
         end: dictionary.len(),
     };
-    dictionary[ChaCha20::new().generate_range(range)]
+    Some(dictionary[ChaCha20::new().generate_range(range)])
 }
 
 /// Generate a passphrase
@@ -122,14 +126,14 @@ pub fn generate(
     dictionaries: &[Dictionary],
     iterations: usize,
     delimiter: Option<&'static str>,
-) -> String {
+) -> Option<String> {
     let mut string = String::new();
 
     for x in 0..iterations {
         // Repeat for every provided dictionary
         for (y, dictionary) in dictionaries.iter().enumerate() {
             // Choose random word
-            string.push_str(choose_random_word(dictionary));
+            string.push_str(choose_random_word(dictionary)?);
 
             // Add delimiter if iteration is not over
             if let Some(delimiter) = delimiter
@@ -147,20 +151,23 @@ pub fn generate(
         }
     }
 
-    string
+    Some(string)
 }
 
 #[cfg(test)]
 mod tests {
+    use super::Dictionary;
     use crate::generate;
 
-    const CUSTOM_DICTIONARY: &[&str] = &["this", "is", "my", "custom", "dictionary"];
-    const CUSTOM_DICTIONARY_2: &[&str] = &["wow", "another", "handmade", "book"];
+    const EMPTY_DICTIONARY: Dictionary = &[];
+    const CUSTOM_DICTIONARY: Dictionary = &["this", "is", "my", "custom", "dictionary"];
+    const CUSTOM_DICTIONARY_2: Dictionary = &["wow", "another", "handmade", "book"];
+    const SMALL_DICTIONARY: Dictionary = &["gâteau"];
 
     #[test]
     fn empty() {
         let passphrase = generate(&[CUSTOM_DICTIONARY], 0, None);
-        assert!(passphrase.is_empty())
+        assert!(passphrase.is_some_and(|x| x.is_empty()))
     }
 
     #[test]
@@ -169,7 +176,7 @@ mod tests {
         let iterations = 2;
         let delimiter = "-";
 
-        let passphrase = generate(dictionaries, iterations, Some(delimiter));
+        let passphrase = generate(dictionaries, iterations, Some(delimiter)).unwrap();
 
         assert!(!passphrase.is_empty());
         assert_eq!(passphrase.matches(delimiter).count(), iterations - 1);
@@ -181,12 +188,18 @@ mod tests {
         let iterations = 4;
         let delimiter = "_";
 
-        let passphrase = generate(dictionaries, iterations, Some(delimiter));
+        let passphrase = generate(dictionaries, iterations, Some(delimiter)).unwrap();
 
         assert!(!passphrase.is_empty());
         assert_eq!(
             passphrase.matches(delimiter).count(),
             iterations * dictionaries.len() - 1
         );
+    }
+
+    #[test]
+    fn empty_dictionary() {
+        assert!(generate(&[EMPTY_DICTIONARY], 1, None).is_none());
+        assert!(generate(&[EMPTY_DICTIONARY], 5, Some(" ")).is_none());
     }
 }

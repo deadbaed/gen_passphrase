@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Update dependency `nanorand` to version 0.8.
+- Function `gen_passphrase::generate()` returns a `Option<String>` instead of `String`, to handle the case where provided dictionaries are empty.
 
 ## 0.1.0 - 2023-04-10
 
