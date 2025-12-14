@@ -7,7 +7,7 @@
 
 This crate allows to [generate] passphrases easily and securely.
 
-Choose the source of words to use in passphrases: either use [built-in dictionaries](dictionary) or provide your own dictionary!
+Choose the source of words to use in passphrases: either use [built-in dictionaries](crate::dictionary) or provide your own dictionary!
 
 By default, the crate does not come with any built-in dictionaries in order to keep the crate small.
 Built-in dictionaries can be added through the usage of features in the crate.
@@ -23,22 +23,13 @@ let passphrase = gen_passphrase::generate(&[dictionary], 2, Some("-"));
 
 ## Built-in dictionary
 
-To enable [built-in dictionaries](dictionary), you need to enable the feature corresponding to the requested dictionary.
+To enable [built-in dictionaries](crate::dictionary), you need to enable the feature corresponding to the requested dictionary.
 
 | Dictionary | Feature to enable |
 |------------|-------------------|
 | Eff Short Wordlist 2 | `eff_short_2` |
 | Eff Short Wordlist 1 | `eff_short_1` |
 | Eff Large Wordlist | `eff_large` |
-
-
-For example, to use the dictionary eff_short_2, add this in your `Cargo.toml`:
-
-```toml
-[dependencies.gen_passphrase]
-version = "*"
-features = ["eff_short_2"]
-```
 
 Then, use the dictionary like you would use a custom dictionary:
 

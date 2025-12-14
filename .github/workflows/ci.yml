@@ -37,3 +37,13 @@ jobs:
       - run: cargo run --example single --features="eff_short_2"
       - run: cargo run --example mix --features="eff_short_2 eff_short_1 eff_large"
       - run: cargo run --example custom --features="eff_short_1"
+
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cargo-bins/cargo-binstall@v1.16.4
+      - name: Check if the README is up to date.
+        run: |
+          cargo binstall cargo-rdme
+          cargo rdme --check
