@@ -51,3 +51,6 @@ let passphrase = gen_passphrase::generate(&[EFF_SHORT_2], 1, None);
 
 A small program to generate dictionaries is provided in [create_dictionary_from_file](./create_dictionary_from_file).
 
+## Development
+
+Use [cargo-rdme](https://github.com/orium/cargo-rdme) to generate part of the readme from [lib.rs](src/lib.rs). For nix users, a nix shell file is included in this repository.
