@@ -47,7 +47,7 @@ let passphrase = gen_passphrase::generate(&[EFF_SHORT_2], 1, None);
 
 <!-- cargo-rdme end -->
 
-### Prepare new built-in dictionary
+## Prepare new built-in dictionary
 
 A small program to generate dictionaries is provided in [create_dictionary_from_file](./create_dictionary_from_file).
 

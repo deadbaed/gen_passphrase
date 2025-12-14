@@ -8,6 +8,7 @@ name = "gen_passphrase"
 version = "0.1.1"
 edition = "2024"
 license = "MIT OR Apache-2.0"
+readme = "readme.md"
 keywords = ["passphrase", "generator", "dictionary", "custom", "random"]
 description = "A secure, simple yet customizable passphrase generator. Use provided dictionaries or bring your own!"
 repository = "https://github.com/deadbaed/gen_passphrase"
