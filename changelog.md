@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## 0.2.0 - 2025-12-15
+
 ### Added
 
 - New dictionaries: BIP 39 [English](https://raw.githubusercontent.com/bitcoin/bips/870c7629aee3dbd0fea1932e498f588dc9421497/bip-0039/english.txt) and [French](https://raw.githubusercontent.com/bitcoin/bips/870c7629aee3dbd0fea1932e498f588dc9421497/bip-0039/french.txt), available as features `bip39_english` and `bip39_french`.
