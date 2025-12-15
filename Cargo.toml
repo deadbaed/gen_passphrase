@@ -24,6 +24,8 @@ default = []
 eff_short_2 = []
 eff_short_1 = []
 eff_large = []
+bip39_english = []
+bip39_french = []
 
 [package.metadata.docs.rs]
 all-features = true
