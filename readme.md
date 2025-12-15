@@ -36,6 +36,8 @@ To enable [built-in dictionaries](https://docs.rs/gen_passphrase/latest/gen_pass
 | Eff Short Wordlist 2 | `eff_short_2` |
 | Eff Short Wordlist 1 | `eff_short_1` |
 | Eff Large Wordlist | `eff_large` |
+| BIP39 English | `bip39_english` |
+| BIP39 French | `bip39_french` |
 
 Then, use the dictionary like you would use a custom dictionary:
 

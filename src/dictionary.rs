@@ -35,6 +35,8 @@ Enable the feature associated with the dictionary to use it.
 
 */
 
+mod bip39_english;
+mod bip39_french;
 mod eff_large;
 mod eff_short_1;
 mod eff_short_2;
@@ -47,3 +49,9 @@ pub use eff_short_1::EFF_SHORT_1;
 
 #[cfg(feature = "eff_large")]
 pub use eff_large::EFF_LARGE;
+
+#[cfg(feature = "bip39_english")]
+pub use bip39_english::BIP39_ENGLISH;
+
+#[cfg(feature = "bip39_french")]
+pub use bip39_french::BIP39_FRENCH;
